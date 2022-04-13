@@ -4,22 +4,36 @@ micronaut:
   metrics:
     enabled: true
 
-#datasources:
-#  default:
-#    url: jdbc:h2:file:/tmp/default
-#    driverClassName: org.h2.Driver
-
+datasources:
+  notDefault:
+    url: jdbc:postgresql://localhost:5432/ogma_test_db
+    username: ogma_test_user
+    password: secretsauce
+    driverClassName: org.postgresql.Driver
+    maximum-pool-size: 10
+    minimum-idle: 2
+    schema: alpha
+  tasks:
+    url: jdbc:postgresql://localhost:5432/ogma_test_db
+    username: ogma_test_user
+    password: secretsauce
+    driverClassName: org.postgresql.Driver
+    maximum-pool-size: 10
+    minimum-idle: 2
+    schema: tasks
 #mongodb:
 #  servers.*.uuid-representation: STANDARD
 #  uri: mongodb://127.0.0.1:27017/jobrunr
 
-#redis:
+# redis:
 #  uri: redis://localhost
 
 #elasticsearch:
 #  httpHosts: http://127.0.0.1:9200
 
 jobrunr:
+  database:
+    datasource: tasks
   job-scheduler:
     enabled: true
   background-job-server:
